@@ -1,36 +1,49 @@
 package com.tenniscourts.reservations;
 
+import com.tenniscourts.common.BaseTest;
 import com.tenniscourts.schedules.Schedule;
-import org.junit.Assert;
-import org.junit.FixMethodOrder;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.MethodSorters;
 import org.mockito.InjectMocks;
-import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
-@SpringBootTest
-@RunWith(MockitoJUnitRunner.class)
-@ContextConfiguration(classes = ReservationService.class)
-public class ReservationServiceTest {
+import static org.hamcrest.Matchers.comparesEqualTo;
+import static org.junit.Assert.assertThat;
+
+public class ReservationServiceTest extends BaseTest {
 
     @InjectMocks
     ReservationService reservationService;
 
     @Test
     public void getRefundValueFullRefund() {
+        buildTest(LocalDateTime.now().plusDays(2), BigDecimal.valueOf(10));
+    }
+
+    @Test
+    public void getRefundValueSeventyFivePercentRefund() {
+        buildTest(LocalDateTime.now().plusHours(13), BigDecimal.valueOf(7.5));
+    }
+
+    @Test
+    public void getRefundValueFiftyPercentRefund() {
+        buildTest(LocalDateTime.now().plusHours(5), BigDecimal.valueOf(5));
+    }
+
+    @Test
+    public void getRefundValueTwentyFivePercentRefund() {
+        buildTest(LocalDateTime.now().plusMinutes(90), BigDecimal.valueOf(2.5));
+    }
+
+    @Test
+    public void getRefundValueNoRefund() {
+        buildTest(LocalDateTime.now(), BigDecimal.ZERO);
+    }
+
+    private void buildTest(LocalDateTime startDateTime, BigDecimal value) {
         Schedule schedule = new Schedule();
-
-        LocalDateTime startDateTime = LocalDateTime.now().plusDays(2);
-
         schedule.setStartDateTime(startDateTime);
-
-        Assert.assertEquals(reservationService.getRefundValue(Reservation.builder().schedule(schedule).value(new BigDecimal(10L)).build()), new BigDecimal(10));
+        assertThat(reservationService.getRefundValue(Reservation.builder().schedule(schedule).value(BigDecimal.valueOf(10)).build()), comparesEqualTo(value));
     }
 }

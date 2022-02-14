@@ -1,12 +1,8 @@
 package com.tenniscourts.reservations;
 
+import com.tenniscourts.guests.GuestDTO;
 import com.tenniscourts.schedules.ScheduleDTO;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
@@ -22,6 +18,8 @@ public class ReservationDTO {
     private Long id;
 
     private ScheduleDTO schedule;
+
+    private GuestDTO guest;
 
     private String reservationStatus;
 
