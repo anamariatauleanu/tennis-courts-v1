@@ -22,7 +22,7 @@ public class ScheduleController extends BaseRestController {
 
     @ApiOperation("Schedules an appointment for tennis court")
     @ApiResponses(value = {
-            @ApiResponse(code = 200 , message = "Schedule successfully created."),
+            @ApiResponse(code = 201 , message = "Schedule successfully created."),
             @ApiResponse(code = 400 , message = "Invalid tennisCourtID or startDate."),
             @ApiResponse(code = 404 , message = "Tennis court not found")
     })
@@ -33,7 +33,7 @@ public class ScheduleController extends BaseRestController {
 
     @ApiOperation("Searches schedules between two given dates with the possibility to check containing only available items")
     @ApiResponses(value = {
-            @ApiResponse(code = 200 , message = "List of schedules successfully returned."),
+            @ApiResponse(code = 201 , message = "List of schedules successfully returned."),
             @ApiResponse(code = 400 , message = "Invalid start or end date."),
             @ApiResponse(code = 404 , message = "No schedules found")
     })

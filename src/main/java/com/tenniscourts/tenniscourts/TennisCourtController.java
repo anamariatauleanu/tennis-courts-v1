@@ -17,7 +17,7 @@ public class TennisCourtController extends BaseRestController {
 
     @ApiOperation("Adds a tennis court")
     @ApiResponses(value = {
-            @ApiResponse(code = 200 , message = "Tennis court successfully created."),
+            @ApiResponse(code = 201 , message = "Tennis court successfully created."),
             @ApiResponse(code = 400 , message = "Invalid input data."),
     })
     @PostMapping

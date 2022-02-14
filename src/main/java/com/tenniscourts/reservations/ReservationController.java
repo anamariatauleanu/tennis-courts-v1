@@ -19,7 +19,7 @@ public class ReservationController extends BaseRestController {
 
     @ApiOperation("Books a reservation")
     @ApiResponses(value = {
-            @ApiResponse(code = 200 , message = "Reservation successfully booked."),
+            @ApiResponse(code = 201 , message = "Reservation successfully booked."),
             @ApiResponse(code = 400 , message = "Invalid guestID or/and scheduleID."),
             @ApiResponse(code = 404 , message = "Guest or/and Schedule not Found")
     })
@@ -30,7 +30,7 @@ public class ReservationController extends BaseRestController {
 
     @ApiOperation("Books a list of reservations")
     @ApiResponses(value = {
-            @ApiResponse(code = 200 , message = "Reservations successfully booked."),
+            @ApiResponse(code = 201 , message = "Reservations successfully booked."),
             @ApiResponse(code = 400 , message = "Invalid guestID or/and scheduleID."),
             @ApiResponse(code = 404 , message = "Guest or/and Schedule not found")
     })
